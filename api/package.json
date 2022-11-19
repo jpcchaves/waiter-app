@@ -4,7 +4,8 @@
   "main": ".eslintrc.js",
   "scripts": {
     "build": "npx tsc",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "start": "node dist"
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
