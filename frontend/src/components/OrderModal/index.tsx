@@ -3,6 +3,7 @@ import { Actions, ModalBody, OrderDetails, Overlay } from './styles';
 import CloseIcon from '../../assets/images/close-icon.svg';
 import { Order } from '../../types/Order';
 import { formatCurency } from '../../utils/formatCurrency';
+import { useEffect } from 'react';
 
 interface OrderModalProps {
 	visible: boolean;
@@ -11,6 +12,20 @@ interface OrderModalProps {
 }
 
 const OrderModal = ({visible, order, onClose}: OrderModalProps) => {
+
+  useEffect(() => {
+    function handleKeyDown (e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+
+    };
+  }, [onClose]);
 
   if(!visible || !order) {
     return null;
